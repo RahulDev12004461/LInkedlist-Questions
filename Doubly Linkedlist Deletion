@@ -1,0 +1,163 @@
+//deletion in linkedlist
+//doubly linkedlist
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+	public:
+		int data;
+		node *prev;
+		node *next;
+	node(int d)
+	{
+		this->data=d;
+		this->prev=NULL;
+		this->next=NULL;
+	}
+	~node()
+	{
+		int val=this->data;
+		if(next!=NULL)
+		{
+			delete next;
+			next=NULL;
+		}
+	}
+};
+//length of doubly linkedlist
+int getlength(node* head)
+{
+	node* temp=head;
+	int length=0;
+	while(temp!=NULL)
+	{
+		length++;
+		
+		temp=temp->next;
+	}
+	
+	return length;
+}
+//traversing a doubly linkedlist
+void print(node* head)
+{
+	node* temp=head;
+	while(temp!=NULL)
+	{
+		cout<<temp->data<<" ";
+		
+		temp=temp->next;
+	}
+	
+	cout<<endl;
+}
+
+	void insertathead(node* &head,node* &tail,int d)
+	{
+		if(head==NULL)
+		{
+			node* nptr= new node(d);
+			nptr->next=NULL;
+			nptr->prev=NULL;
+			head=nptr;
+			tail=nptr;
+		}
+		else
+		{
+			node* nptr= new node(d);
+			nptr->next=head;
+			head->prev=nptr;
+			nptr->prev=NULL;
+			head=nptr;
+		}
+		
+	}
+	void insertattail(node* &tail,int d)
+	{
+		if(tail==NULL)
+		{
+			node* temp=new node(d);
+			tail=temp;
+		}
+		else
+		{
+		
+		node* nptr=new node(d); 
+		tail->next=nptr;
+		nptr->prev=tail;
+		tail=nptr;
+	}
+	}
+	void insetatmiddle(node* &head,int d, int pos)
+	{
+		node* nptr=new node(d);
+		node* ptr=head;
+		 int cnt=1;
+		 while(cnt<pos-1)
+		 {
+		 	ptr=ptr->next;
+		 	cnt++;
+		 }
+		 nptr->next=ptr->next;
+		 ptr->next->prev=nptr;
+		 ptr->next=nptr;
+		 nptr->prev=ptr;
+		 
+		 
+	}
+	void deletion(node* &head,int pos)
+	{
+		if(pos==1)
+		{
+			
+			node* ptr=head;
+			
+			ptr->next->prev=NULL;
+			head=ptr->next;
+			ptr->next=NULL;
+		    delete ptr;
+			
+		}
+		else
+		{
+			node *ptr=head;
+			node *pptr=NULL;
+			int cnt=1;
+			while(cnt<pos)
+			{
+				pptr=ptr;
+				ptr=ptr->next;
+				cnt++;
+			}
+			pptr->next=ptr->next;
+			ptr->next->prev=pptr;
+			ptr->next=NULL;
+			ptr->prev=NULL;
+			delete ptr;
+			
+			
+			
+		}
+	}
+int main()
+{
+	//node* node1= new node(10);
+	node* head=NULL;
+	node* tail=NULL;
+	print(head);
+	insertathead(head,tail,11);
+	print(head);
+	insertathead(head,tail,13);
+	print(head);
+	insertathead(head,tail,15);
+	print(head);
+	insertathead(head,tail,17);
+	print(head);
+	insertattail(tail,9);
+	print(head);
+    insetatmiddle(head,22,3);
+    print(head);
+    deletion(head,3);
+    print(head);
+	
+	
+}
