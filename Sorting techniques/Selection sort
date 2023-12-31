@@ -1,0 +1,45 @@
+//insertion sort
+#include<bits/stdc++.h>
+using namespace std;
+void selectionsort(int arr[],int n)
+{
+// time compelxity will be O(n)
+	int mini;
+	for(int i=0;i<=n-2;i++)
+	{
+		mini=i;
+		for(int j=i;j<=n-1;j++)
+		{
+			if(arr[j]<arr[mini])
+			{
+				mini=j;
+				swap(arr[i],arr[mini]);
+			}
+		}
+	}
+
+}
+void print(int arr[],int n)
+{
+	for(int i=0;i<n;i++)
+	{
+	    cout<<arr[i]<<" ";
+	}
+}
+int main()
+{
+	int n;
+	cout<<"enter the size of an array ";
+	cin>>n;
+	
+	int arr[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+		
+	}
+	selectionsort(arr,n);
+	cout<<"after sorting done "<<endl;
+	print(arr,n);
+	
+}
