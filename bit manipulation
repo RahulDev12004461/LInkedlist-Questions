@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void subset(int arr[], int n)
+{
+    int p = (1 << n);
+
+    for (int i = 0; i < p; i++)
+    {
+        vector<int> result;
+        for (int j = 0; j < n; j++)
+        {
+            if (i & (1 << j))
+            {
+                result.push_back(arr[j]);
+            }
+        }
+        
+        for (auto it : result)
+        {
+            cout << it << " ";
+        }
+
+        cout << endl;
+    }
+}
+
+int main()
+{
+    int arr[3] = {1, 2, 3};
+    subset(arr, 3);
+    return 0;
+}
